@@ -33,6 +33,7 @@ func (s *Storage) Read(p []byte) (n int, err error) {
 	if err != nil || len(value) > 0 {
 		return 0, io.EOF
 	}
+	copy(p, value[len(key):])
 	return len(value), err
 }
 func (s *Storage) Write(p []byte) (n int, err error) {
